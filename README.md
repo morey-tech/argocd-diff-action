@@ -43,6 +43,11 @@ jobs:
 
 ## Publishing
 
+For first time setup run:
+```
+$ npm install
+```
+
 Build the script and commit to your branch:
 `npm run build && npm run pack`
 Commit the build output, and make a PR.
