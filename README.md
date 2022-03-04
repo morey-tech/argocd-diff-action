@@ -31,7 +31,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           argocd-version: v2.2.5
           argocd-extra-cli-args: --grpc-web
-          argocd-exclude-paths: "do-dev-1/faas-functions,"
+          argocd-exclude-paths: "path/to/exclude,"
 ```
 
 ## How it works
