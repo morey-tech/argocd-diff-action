@@ -105,7 +105,7 @@ async function getApps(): Promise<App[]> {
           app.spec.source.targetRevision === 'master'
           || app.spec.source.targetRevision === 'main'
           || app.spec.source.targetRevision === 'HEAD')
-      && (!EXCLUDE_PATHS.includes(app.spec.source.path))
+      && !EXCLUDE_PATHS.includes(app.spec.source.path)
     );
   });
 }
