@@ -19,6 +19,10 @@ inputs:
     description: Extra arguments to pass to the argocd CLI
     default: --grpc-web
     required: false
+  argocd-exclude-paths: 
+    description: ArgoCD app apths to exclude in comma separated list
+    default: ''
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
