@@ -23,14 +23,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - uses: quizlet/argocd-diff-action@master
+      - uses: ratehub/argocd-diff-action@master
         name: ArgoCD Diff
         with:
           argocd-server-url: argocd.example.com
           argocd-token: ${{ secrets.ARGOCD_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          argocd-version: v1.6.1
+          argocd-version: v2.2.5
           argocd-extra-cli-args: --grpc-web
+          argocd-exclude-paths: "path/to/exclude,"
 ```
 
 ## How it works

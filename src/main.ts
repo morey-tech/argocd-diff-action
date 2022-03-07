@@ -37,7 +37,7 @@ const ARGOCD_SERVER_URL = core.getInput('argocd-server-url');
 const ARGOCD_TOKEN = core.getInput('argocd-token');
 const VERSION = core.getInput('argocd-version');
 const EXTRA_CLI_ARGS = core.getInput('argocd-extra-cli-args');
-
+const EXCLUDE_PATHS = core.getInput('argocd-exclude-paths').split(',');
 const octokit = github.getOctokit(githubToken);
 
 async function execCommand(command: string, options: ExecOptions = {}): Promise<ExecResult> {
@@ -100,9 +100,12 @@ async function getApps(): Promise<App[]> {
 
   return (responseJson.items as App[]).filter(app => {
     return (
-      app.spec.source.repoURL.includes(
-        `${github.context.repo.owner}/${github.context.repo.repo}`
-      ) && (app.spec.source.targetRevision === 'master' || app.spec.source.targetRevision === 'main' || app.spec.source.targetRevision === 'HEAD')
+      app.spec.source.repoURL.includes(`${github.context.repo.owner}/${github.context.repo.repo}`)
+      && (
+          app.spec.source.targetRevision === 'master'
+          || app.spec.source.targetRevision === 'main'
+          || app.spec.source.targetRevision === 'HEAD')
+      && !EXCLUDE_PATHS.includes(app.spec.source.path)
     );
   });
 }
