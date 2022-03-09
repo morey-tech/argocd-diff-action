@@ -1755,7 +1755,7 @@ function getApps() {
             core.error(e);
         }
         return responseJson.items.filter(app => {
-            return app.spec.source.repoURL.includes(`${github.context.repo.owner}/${github.context.repo.repo}`
+            return (app.spec.source.repoURL.includes(`${github.context.repo.owner}/${github.context.repo.repo}`)
                 && (app.spec.source.targetRevision === 'master'
                     || app.spec.source.targetRevision === 'main'
                     || app.spec.source.targetRevision === 'HEAD')
@@ -1803,7 +1803,7 @@ ${diff}
 `);
         const output = scrubSecrets(`
 ## ArgoCD Diff for commit [\`${shortCommitSha}\`](${commitLink})
-_Updated at ${new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })} PT_
+_Updated at ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })} PT_
   ${diffOutput.join('\n')}
 
 | Legend | Status |
